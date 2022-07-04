@@ -1,18 +1,19 @@
-import { useRef, useState, useEffect } from 'react';
-import { MrvlInput, MrvlForm, MrvlCheckbox } from 'stenciltest-react';
+import { useRef, useState } from 'react';
+import { MrvlInput, MrvlCheckbox } from 'stenciltest-react';
 
 const Form = () => {
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [data, setData] = useState({});
 
-  const handleInput = (e) => {
+  const handleInput = (e: any) => {
     console.log(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     console.log(11, formRef.current);
+    if (!formRef.current) return;
     const formData = new FormData(formRef.current);
 
     setData([...formData]);

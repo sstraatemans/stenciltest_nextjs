@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const ref = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
-    const listener = (e) => {
+    const listener = (e: any) => {
       console.log(22, e.detail);
     };
     ref.current?.addEventListener('todoCompleted', listener);
