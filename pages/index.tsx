@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { MyComponent } from 'stenciltest-react';
+import { MrvlCheckbox, MyComponent } from 'stenciltest-react';
 import { useState, useEffect, useRef } from 'react';
 import Form from '../components/Form';
 
