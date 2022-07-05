@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { MrvlInput, MrvlCheckbox } from 'stenciltest-react';
+import { MrvlInput, MrvlCheckbox, MrvlButton } from 'stenciltest-react';
 
 const Form = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -24,7 +24,7 @@ const Form = () => {
       <form ref={formRef} onSubmit={handleSubmit}>
         <MrvlInput name='damn' label='labeltest' onInput={handleInput} />
         <MrvlCheckbox name='check' label='checkbox' onInput={handleInput} />
-        <button type='submit'>submit</button>
+        <MrvlButton type='submit'>submit!</MrvlButton>
       </form>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>

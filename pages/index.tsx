@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { MrvlCheckbox, MyComponent } from 'stenciltest-react';
+import { MrvlButton, MyComponent } from 'stenciltest-react';
 import { useState, useEffect, useRef } from 'react';
 import Form from '../components/Form';
 
@@ -29,6 +29,31 @@ const Home: NextPage = () => {
       />
       {count}
       <button onClick={() => setCount((v) => v + 1)}>add</button>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <div>
+        <h2>Buttons</h2>
+        <MrvlButton type='submit' size='small'>
+          Small button
+        </MrvlButton>{' '}
+        <MrvlButton type='submit'>Medium button</MrvlButton>{' '}
+        <MrvlButton type='submit' size='large'>
+          Large button
+        </MrvlButton>
+      </div>
+      <div>
+        <h2>Outline buttons</h2>
+        <MrvlButton type='submit' size='small' outline>
+          Small button
+        </MrvlButton>{' '}
+        <MrvlButton type='submit' outline>
+          Medium button
+        </MrvlButton>{' '}
+        <MrvlButton type='submit' size='large' outline>
+          Large button
+        </MrvlButton>
+      </div>
     </div>
   );
 };
