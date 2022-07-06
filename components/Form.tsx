@@ -24,7 +24,7 @@ const Form = () => {
       <form ref={formRef} onSubmit={handleSubmit}>
         <MrvlInput name='damn' label='labeltest' onInput={handleInput} />
         <MrvlCheckbox name='check' label='checkbox' onInput={handleInput} />
-        <MrvlButton type='submit'>submit!</MrvlButton>
+        <button type='submit'>submit!</button>
       </form>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
