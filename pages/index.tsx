@@ -20,41 +20,33 @@ const Home: NextPage = () => {
 
   return (
     <div className='App'>
+      <button onClick={() => console.log(23)}>add</button>
       <MrvlCard>
         dd serverside rendering
-        <MyComponent
-          ref={ref}
-          onTodoCompleted={(ev: any) => console.log('do with a function', ev.detail)}
-          count={count}
-        />
-        {count}
-        <button onClick={() => setCount((v) => v + 1)}>add</button>
+        <span slot='body'>
+          <MyComponent
+            ref={ref}
+            onTodoCompleted={(ev: any) => console.log('do with a function', ev.detail)}
+            count={count}
+          />
+          <div>{count}</div>
+        </span>
+        <span slot='actions'>
+          <button onClick={() => setCount((v) => v + 1)}>add</button>
+        </span>
       </MrvlCard>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
+
       <div>
         <h2>Forms</h2>
         <Form />
       </div>
-      <p>&nbsp;</p>
-      <div>
-        <h2>Buttons</h2>
-        <MrvlButton type='submit' size='small'>
-          Small button
-        </MrvlButton>{' '}
-        <MrvlButton type='submit'>Medium button</MrvlButton>{' '}
-        <MrvlButton type='submit' size='large'>
-          Large button
-        </MrvlButton>
-      </div>
+
       <div>
         <h2>Outline buttons</h2>
         <MrvlButton type='submit' size='small' outline>
           Small button
-        </MrvlButton>{' '}
-        <MrvlButton type='submit' outline>
-          Medium button
-        </MrvlButton>{' '}
+        </MrvlButton>
+        <MrvlButton type='submit'>Medium button</MrvlButton>
         <MrvlButton type='submit' size='large' outline>
           Large button
         </MrvlButton>
@@ -66,7 +58,7 @@ const Home: NextPage = () => {
       <div>
         <h2>Composed components</h2>
         <MrvlCard>
-          <div>test</div>
+          <div slot='body'>test</div>
           <p slot='actions'>
             <MrvlButton type='submit' outline>
               Medium button

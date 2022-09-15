@@ -7,20 +7,22 @@ import Document, {
   NextScript,
 } from 'next/document';
 import * as stencil from 'stenciltest/hydrate';
+import pretty from 'pretty';
+import { bodyStreamToNodeStream } from 'next/dist/server/body-streams';
 
-const noOverlayWorkaroundScript = `
-  window.addEventListener('error', event => {
-    event.stopImmediatePropagation()
-  })
+// const noOverlayWorkaroundScript = `
+//   window.addEventListener('error', event => {
+//     event.stopImmediatePropagation()
+//   })
 
-  window.addEventListener('unhandledrejection', event => {
-    event.stopImmediatePropagation()
-  })
+//   window.addEventListener('unhandledrejection', event => {
+//     event.stopImmediatePropagation()
+//   })
 
-  console.log = function () {};
-  console.err = function () {};
-  console.error = function () {};
-`;
+//   console.log = function () {};
+//   console.err = function () {};
+//   console.error = function () {};
+// `;
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -44,9 +46,12 @@ class MyDocument extends Document {
       });
 
       var reg = /\<body[^>]*\>([^]*)\<\/body/m;
-      const body = wcHtml.html.match(reg)[1];
-
-      res.html = body;
+      const body = wcHtml?.html?.match(reg);
+      if (body) {
+        res.html = pretty(body[1], { ocd: true });
+      } else {
+        res.html = '';
+      }
       return res;
     };
 
@@ -62,9 +67,9 @@ class MyDocument extends Document {
         <Html>
           <Head>
             <>
-              {process.env.NODE_ENV !== 'production' && (
+              {/* {process.env.NODE_ENV !== 'production' && (
                 <script dangerouslySetInnerHTML={{ __html: noOverlayWorkaroundScript }} />
-              )}
+              )} */}
 
               <link rel='preconnect' href='https://fonts.googleapis.com' />
               <link rel='preconnect' href='https://fonts.gstatic.com' />
